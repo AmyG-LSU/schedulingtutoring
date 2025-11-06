@@ -12,14 +12,14 @@ export default function AboutMe() {
   return (
     <div>
       <nav>
-        <div className="personal__logo">Course Space</div>
+        <div className="personal__logo">Logo</div>
         <ul className="nav__link--list">
           <li>
             <a
               href="#"
               className="nav__link-anchor link__hover-effect link__hover-effect--black"
             >
-              Home
+              Profile
             </a>
           </li>
           <li>
@@ -27,15 +27,7 @@ export default function AboutMe() {
               href="#"
               className="nav__link-anchor link__hover-effect link__hover-effect--black"
             >
-              Sessions
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="nav__link-anchor nav__link-anchor-primary"
-            >
-              Contact
+              Notification
             </a>
           </li>
         </ul>
@@ -76,17 +68,17 @@ export default function AboutMe() {
                 </div>
 
                 <div>
-                  <label>Full Name: </label>
-                  <input type="text" name="fullname" required disabled={!isEditable} />
-                </div>
-
-                <div>
                   <label>E-mail: </label>
                   <input type="email" name="email" required disabled={!isEditable} />
                 </div>
 
                 <div>
                   <label>Major: </label>
+                  <input type="text" name="major" required disabled={!isEditable} />
+                </div>
+
+              <div>
+                  <label>Year: </label>
                   <input type="text" name="major" required disabled={!isEditable} />
                 </div>
               </form>
