@@ -1,6 +1,6 @@
 // components/Navbar.tsx
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react"; // icon library (lucide-react)
@@ -25,15 +25,22 @@ export default function Navbar() {
 
                     {/* Desktop Links */}
                     <div className="hidden md:flex space-x-6">
-                        <Link href="/about" className="text-white hover:text-blue-600">
-                            About Us
+
+                        <Link href="/login" className="flex items-center justify-center">
+                            <Link href="/login" className="flex items-center justify-center h-16">
+                                <Image
+                                    src="/profile.png"
+                                    alt="Profile"
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                    className="h-3/4 w-auto object-contain filter brightness-0 invert"
+                                />
+                            </Link>
+
                         </Link>
-                        <Link href="/login" className="text-white hover:text-blue-600">
-                            Login
-                        </Link>
-                        <Link href="/contact" className="text-white hover:text-blue-600">
-                            Contact Us
-                        </Link>
+
+
                     </div>
 
                     {/* Mobile Menu Button */}
