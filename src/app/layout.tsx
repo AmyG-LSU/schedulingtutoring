@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Fira_Sans} from "next/font/google";
+//import DropDown from "@/components/Dropdown";
+import SubjectDropdown from "@/components/SubjectDropdown";
+import TimeDropdown from "@/components/TimeDropdown";
+import LocationDropdown from "@/components/LocationDropdown";
 
 const fira_Sans = Fira_Sans({
   subsets: ["latin"],
@@ -29,7 +33,9 @@ export default function RootLayout({
         <main>
             {children}
         </main>
-
+        <SubjectDropdown />
+        <TimeDropdown />
+        <LocationDropdown />
       </body>
     </html>
   );
