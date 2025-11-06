@@ -5,7 +5,8 @@ import Link from "next/link";
 const links =[
     {href: "/", label: "HOME"},
     {href: "/about", label: "ABOUT"},
-    {href: "/contact", label: "CONTACT US"}
+    {href: "/contact", label: "CONTACT US"},
+    {href: "/profile", label: "PROFILE"}
 ];
 export default function Navbar(){
     return(
