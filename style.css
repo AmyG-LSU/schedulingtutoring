@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  background-color: white;
+  color: #333;
+  text-align: center;
+  text-decoration-color: #00aeff;
+}
+
+/* NAVBAR */
+
+nav {
+    position: fixed;           /* Make it stick to the top */
+    top: 0;                    /* Position it at the very top */
+    left: 0;
+    right: 0;
+    z-index: 1000;             /* Keep it above other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #00aeff;
+    height: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.personal__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.nav__link--list {
+  display: flex;
+  gap: 24px;
+}
+
+.nav__link-anchor {
+  text-decoration: none;
+  color: #00aeff;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* First link: hover background and text */
+.nav__link-anchor:nth-child(1):hover {
+  background-color: #333;
+  color: white;
+}
+
+/* Second link */
+.nav__link-anchor:nth-child(2):hover {
+  background-color: #333;
+  color: white;
+}
+
+.nav__link-anchor {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Line animation base */
+.nav__link-anchor:nth-child(1)::after,
+.nav__link-anchor:nth-child(2)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: white;
+  transition: width 0.4s ease;
+}
+
+/* On hover: show line + color/background changes */
+.nav__link-anchor:nth-child(1):hover,
+.nav__link-anchor:nth-child(2):hover {
+  background-color: #00aeff;
+  color: white;
+}
+
+.nav__link-anchor:nth-child(1):hover::after,
+.nav__link-anchor:nth-child(2):hover::after {
+  width: 100%;
+}
+
+/* Third link */
+.nav__link-anchor:nth-child(3):hover {
+  background-color: #333;
+  color: white;
+}
+
+.nav__link-anchor-primary {
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav__link-anchor-primary:hover {
+  background-color: #00aeff;
+}
+
+/* ABOUT ME SECTION */
+#about-me {
+  padding: 60px 100px 50px;
+  padding-right: 1500px;
+  padding-bottom: 50px;
+}
+
+.about-me__info{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+.about-me__info--container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  margin-top: -10px;
+  margin-right: -400px;
+}
+
+.about-me__picture--mask {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;   /* make it circular */
+  overflow: hidden;
+  margin-left: -80px;
+  margin: 0px 420px 20px 0px;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  background: #222;     /* optional: background behind transparent areas */
+}
+
+.about-me__picture {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* show the whole image */
+}
+
+
+.wave {
+  display: inline-block;
+  animation: animate-wave 500ms infinite ease-in-out;
+}
+
+@keyframes animate-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  margin-top: -200px;
+  margin-right: 30px;
+  line-height: 1.2;
+  
+}
+
+.about-me__profile--editor button {
+    background-color: #00aeff;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+  margin-top: -40px;
+  margin-right: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.text--blue {
+  color: #00aeff;
+}
+
+.about-me__info-para {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 100px;
+  overflow: hidden;
+  margin-left: 0px;
+  margin: 0px 20px 20px 0px;
+}
+
+.about-me__links a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #00aeff;
+    transition: color 0.3s ease;
+  }
+  
+  .about-me__links a:hover {
+    color: #00aeff; /* or whatever highlight color you prefer */
+  }
+
+.about-me__links a:hover {
+  color: #00aeff;
+}
+
+.about-me__illustration {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 40px;
+}
+
+.about-me__links {
+    margin-top: 20px;
+  }
+  
+  .about-me__links a {
+    margin: 0 12px;
+    font-size: 24px;
+    color: #00aeff;
+    transition: color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .about-me__links a:hover {
+    color: #00aeff;
+  }
+
+  .about-me__info--container1 {
+    color: #00aeff;
+    margin-top: 50px;
+    margin-right: 200px;
+  }
+
+  .about-me__profile--editor1 {
+    margin-top: 15px;
+    margin-right: 200px;
+  }
+
+  .about-me__info--container2 {
+    color: #00aeff;
+    margin-top: -55px;
+    margin-left: 500px;
+    text-size-adjust: 40px;
+  }
+
+  .about-me__profile--editor2 {
+    margin-top: 15px;
+    margin-left: 500px;
+  }
+
+  .about-me__info--container1{
+    margin-top: 50px;
+    margin-left: 50px;
+    display: flex
+      
+  }
+
+
+  .course-details-container {
+    text-align: left;
+    border: 1px solid (255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background: #00aeff;
+    padding: 2rem;
+    margin: 1.5rem auto 3rem;
+    color: #00aeff;
+    padding-bottom: 25rem;
+  }
+
+  .course-details-container:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0px 20px rgba(0, 174, 255, 0.25);
+    transform: translateY(-3px);
+    margin-bottom: 200px;
+  }
+
+  .course-details-container h2 {
+    color: #00aeff;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .course-meta h4, .course-meta h5 {
+    color: #00aeff;
+    margin-bottom: 0.3rem;
+    margin-top: 1rem;
+    font-weight: 700;
+  }
+
+  .course-meta p {
+    color: #00aeff;
+    margin: 0;
+    padding-left: 0.5rem;
+  }
+
+  .course-description {
+    color: #ccc;
+    line-height: 1.6;
+    margin-top: 1.5rem;
+  }
+  
+  .offerings-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.container1, .container2 {
+  flex: 1 1 400px;     /* allow to shrink/grow evenly */
+  max-width: 500px;
+}
+
+.course-details-container {
+  background: #d7d7d7;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  color: #333;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.course-details-container:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 900px) {
+  .offerings-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container1, .container2 {
+    max-width: 90%;
+  }
+}
