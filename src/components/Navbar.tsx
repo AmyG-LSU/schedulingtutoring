@@ -26,19 +26,16 @@ export default function Navbar() {
                     {/* Desktop Links */}
                     <div className="hidden md:flex space-x-6">
 
-                        <Link href="/login" className="flex items-center justify-center">
-                            <Link href="/login" className="flex items-center justify-center h-16">
-                                <Image
-                                    src="/profile.png"
-                                    alt="Profile"
-                                    width={0}
-                                    height={0}
-                                    sizes="100vw"
-                                    className="h-3/4 w-auto object-contain filter brightness-0 invert"
-                                />
-                            </Link>
-
+                        <Link href="/login" className="flex items-center justify-center h-16">
+                          <Image
+                             src="/profile.png"
+                             alt="Profile"
+                             width={40}
+                             height={40}
+                             className="h-3/4 w-auto object-contain filter brightness-0 invert"
+                            />
                         </Link>
+
 
 
                     </div>
