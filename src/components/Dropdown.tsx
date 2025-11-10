@@ -5,10 +5,25 @@ import { useState } from "react";
 interface Options {
     Type: string;
     option: string[];
+    onSelect: (selected: string[]) => void; // 🔹 new prop to send selected items to parent
 }
 
-export default function Dropdown({ Type, option }: Options) {
+export default function Dropdown({ Type, option, onSelect }: Options) {
     const [open, setOpen] = useState(false);
+    const [selected, setSelected] = useState<string[]>([]);
+
+    // 🔹 Handles selecting/unselecting options
+    const toggleOption = (opt: string) => {
+        let updated: string[];
+        if (selected.includes(opt)) {
+            updated = selected.filter((item) => item !== opt);
+        } else {
+            updated = [...selected, opt];
+        }
+
+        setSelected(updated);
+        onSelect(updated); // 🔹 send selection back to parent
+    };
 
     return (
         <div className="relative inline-block text-left">
@@ -40,7 +55,7 @@ export default function Dropdown({ Type, option }: Options) {
             {/* Dropdown menu */}
             <div
                 className={`absolute z-10 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow 
-                   dark:bg-gray-700 dark:divide-gray-600 transition-all ${
+                    dark:bg-gray-700 dark:divide-gray-600 transition-all ${
                     open ? "block" : "hidden"
                 }`}
             >
@@ -54,6 +69,8 @@ export default function Dropdown({ Type, option }: Options) {
                                 <input
                                     id={`checkbox-${i}`}
                                     type="checkbox"
+                                    checked={selected.includes(opt)} // 🔹 controlled input
+                                    onChange={() => toggleOption(opt)} // 🔹 update selection
                                     value={opt}
                                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm
                              focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700
@@ -64,6 +81,7 @@ export default function Dropdown({ Type, option }: Options) {
                                     className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                 >
                                     {opt}
+
                                 </label>
                             </div>
                         </li>
