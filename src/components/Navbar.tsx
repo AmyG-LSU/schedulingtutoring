@@ -26,8 +26,8 @@ export default function Navbar() {
                     {/* Desktop Links */}
                     <div className="hidden md:flex space-x-6">
 
-                        <Link href="/login" className="flex items-center justify-center">
-                            <Link href="/login" className="flex items-center justify-center h-16">
+
+                            <Link href="/profile" className="flex items-center justify-center h-16">
                                 <Image
                                     src="/profile.png"
                                     alt="Profile"
@@ -38,7 +38,7 @@ export default function Navbar() {
                                 />
                             </Link>
 
-                        </Link>
+
 
 
                     </div>

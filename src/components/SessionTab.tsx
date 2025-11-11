@@ -1,0 +1,126 @@
+"use client";
+
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { sessions } from "@/data/sessions";
+
+// 🧩 Accepts filters passed in from parent
+interface SessionTabProps {
+    filters: {
+        courses: string[];
+        subject: string[];
+        time: string[];
+        location: string[];
+    };
+}
+
+export default function SessionTab({ filters }: SessionTabProps) {
+    const [expandedId, setExpandedId] = useState<number | null>(null);
+
+    // ✅ Destructure filters
+    const { courses, subject, time, location } = filters;
+
+    // ✅ Apply combined filtering logic
+    const filteredSessions = sessions.filter((session) => {
+        // Matches course names (by code or subject)
+        const courseMatch =
+            courses.length === 0 ||
+            courses.some((c) =>
+                session.course.toUpperCase().includes(c.toUpperCase())
+            );
+
+        // Matches times (checks start or end time)
+        const timeMatch =
+            time.length === 0 ||
+            time.some(
+                (t) =>
+                    session.startTime.toUpperCase().includes(t.toUpperCase()) ||
+                    session.endTime.toUpperCase().includes(t.toUpperCase())
+            );
+
+        // Matches location names
+        const locationMatch =
+            location.length === 0 ||
+            location.some((l) =>
+                session.location.toUpperCase().includes(l.toUpperCase())
+            );
+        const subjecttMatch =
+            subject.length === 0 ||
+            subject.some((l) =>
+                session.subject.toUpperCase().includes(l.toUpperCase())
+            );
+        // ✅ Combine: must satisfy ALL active filters
+        return courseMatch && timeMatch && locationMatch && subjecttMatch
+    });
+
+    return (
+        <div className="overflow-y-auto p-4 space-y-4">
+            {filteredSessions.length > 0 ? (
+                filteredSessions.map((session) => {
+                    const isExpanded = expandedId === session.id;
+                    return (
+                        <div
+                            key={session.id}
+                            className="bg-amber-100 border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer p-6"
+                            onClick={() => setExpandedId(isExpanded ? null : session.id)}
+                        >
+                            {/* Header */}
+                            <div className="flex justify-between items-center px-5 py-4">
+                                <div>
+                                    <h3 className="font-semibold text-lg text-gray-800">
+                                        {session.name}
+                                    </h3>
+                                    <p className="text-sm text-gray-500">
+                                        {session.tutor} · {session.weekDay} {session.startTime} ·{" "}
+                                        {session.location}
+                                    </p>
+                                </div>
+                                {isExpanded ? (
+                                    <ChevronUp className="text-gray-400" />
+                                ) : (
+                                    <ChevronDown className="text-gray-400" />
+                                )}
+                            </div>
+
+                            {/* Expanded Section */}
+                            <div
+                                className={`overflow-hidden transition-all duration-300 ${
+                                    isExpanded ? "max-h-40 p-4" : "max-h-0 p-0"
+                                }`}
+                            >
+                                {/* Tags */}
+                                <div className="flex flex-wrap justify-center gap-2 mb-3">
+                                    {session.tags.map((tag, i) => (
+                                        <span
+                                            key={i}
+                                            className="bg-blue-100 text-blue-700 text-sm font-semibold px-2 py-1 rounded-full"
+                                        >
+                      {tag}
+                    </span>
+                                    ))}
+                                </div>
+
+                                {/* Description */}
+                                <p className="text-gray-600 text-sm text-center">
+                                    {session.description}
+                                </p>
+
+                                {/* Buttons */}
+                                <div className="flex justify-center gap-4 mt-3">
+                                    <button className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 shadow-sm">
+                                        Favorite
+                                    </button>
+                                    <button className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 shadow-sm">
+                                        Schedule
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })
+            ) : (
+                <p className="text-center text-gray-500">No sessions match your filters.</p>
+            )}
+        </div>
+    );
+}
