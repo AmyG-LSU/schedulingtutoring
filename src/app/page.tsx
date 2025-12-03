@@ -1,81 +1,112 @@
 "use client";
-import React from 'react';
-import Dropdown from "@/components/Dropdown";
-import SessionTab from "@/components/SessionTab"
-import { useState } from "react";
+
+import React, { useState } from "react";
+import FilterSelect from "@/components/FilterSelect";
+import SessionTab from "@/components/SessionTab";
+import { profileSessions } from "@/data/profilesData";
+import { sessions } from "@/data/sessions";
 
 const Home = () => {
+    // dropdown options from their schedule
+    const userCourses = profileSessions.courseNums;
+    const userSubjects = profileSessions.subjects;
 
+    // session prefiltered for all courses and subjects they are in
+    const filteredCourses = sessions.filter((s) =>
+        userCourses.includes(s.course)
+    );
+
+    const filteredSubjects = sessions.filter((s) =>
+        userSubjects.includes(s.subject)
+    );
+
+    // combine & remove duplicates
+    const combinedSessions = [
+        ...filteredCourses,
+        ...filteredSubjects,
+    ].filter(
+        (session, index, self) =>
+            self.findIndex((s) => s.id === session.id) === index
+    );
+
+    const locations = [... new Set(sessions.map(s => s.location))];
+    const tags = [... new Set(sessions.flatMap(s => s.tags))];
     const [filters, setFilters] = useState({
-        courses: [] as string[],
-        subject: [] as string[],
-        time: [] as string[],
-        location: [] as string[],
+        courses: [],
+        subject: [],
+        time: [],
+        location: [],
     });
 
     return (
+        <div className="p-6 space-y-6">
 
-        <div className="flex justify-center-safe gap-20">
-            <div className="flex justify-center-safe ml-50">
-                <SessionTab filters={filters}/>
-            </div>
-            <div className="flex flex-col gap-10">
-                <button onClick={() =>
-                    setFilters({
-                        courses: [] as string[],
-                        subject: [] as string[],
-                        time: [] as string[],
-                        location: [] as string[],
-                    })
-                }
-                        className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition rounded-xl"
+            {/* Pass filters into SessionTab */}
+            <div className=" flex gap-4 mr-5 justify-end-safe">
+
+                <FilterSelect
+                    label="Filter by Subject"
+                    options={["Math", "Physics", "Chemistry", "English", "Computer Science"]}
+                    selected={filters.subject}                              // ⭐ pass value down
+                    onChange={(selectedSubjects) =>
+                        setFilters((prev) => ({...prev, subject: selectedSubjects}))
+                    }
+                />
+
+                <FilterSelect
+                    label="Filter by Course"
+                    options={["1550", "2001", "4402", "2070"]}
+                    selected={filters.courses}                              // ⭐ pass value down
+                    onChange={(selectedCourses) =>
+                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                    }
+                />
+
+                <FilterSelect
+                    label="Filter by Day"
+                    options={["Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday", "Sunday"]}
+                    selected={filters.time}                              // ⭐ pass value down
+                    onChange={(selectedCourses) =>
+                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                    }
+                />
+                <FilterSelect
+                    label="Filter by Location"
+                    options={locations}
+                    selected={filters.time}                              // ⭐ pass value down
+                    onChange={(selectedCourses) =>
+                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                    }
+                />
+                <FilterSelect
+                    label="Filter by Tags"
+                    options={tags}
+                    selected={filters.time}                              // ⭐ pass value down
+                    onChange={(selectedCourses) =>
+                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                    }
+                />
+                <button
+                    onClick={() =>
+                        setFilters({
+                            courses: [],
+                            subject: [],
+                            time: [],
+                            location: [],
+                        })
+                    }
+                    className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600"
                 >
                     Clear Filters
                 </button>
-                <Dropdown
-                    Type="Subject"
-                    option={[
-                        "Math",
-                        "Physics",
-                        "Computer Science",
-                        "Chemistry",
-                        "English",
-                        "Economics",
-                        "Engineering",
-                        "Communication",
-                        "Business",
-                        "Psychology",
-                        "Art",
-                        "Environmental Science",
-                    ]}
-                    onSelect={(selected) => setFilters((p) => ({ ...p, subject: selected }))}
-                />
-            <Dropdown Type="Courses" option={[
-                "1001", "1126", "1253", "1350", "1440", "1550", "1552", "2000",
-                "2001", "2025", "2030", "2060", "2070", "2085", "2261", "2733",
-                "2740", "3201", "3302", "4360", "4402"
-            ]
-            } onSelect={(selected) => setFilters((p) => ({ ...p, courses: selected }))}/>
-            <Dropdown Type="Time" option={["8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM", "7 PM"]
-            } onSelect={(selected) => setFilters((p) => ({ ...p, time: selected }))}/>
-            <Dropdown Type="Location" option={[
-                "Patrick F. Taylor Hall",
-                "Nicholson Hall",
-                "CEBA",
-                "Chemistry Building",
-                "Business Education Complex",
-                "Howe-Russell Hall",
-                "Main Library",
-                "Coates Hall",
-                "Design Building",
-                "Energy Coast Building"
-            ]
-            } onSelect={(selected) => setFilters((p) => ({ ...p, location: selected }))}/>
-
             </div>
 
-        </div>
 
+            <SessionTab sessions={combinedSessions} filters={filters} />
+
+        </div>
     );
 };
+
 export default Home;
+

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { sessions } from "@/data/sessions";
+import { Session } from "@/data/sessions"; // adjust if needed
 
-// 🧩 Accepts filters passed in from parent
 interface SessionTabProps {
+    sessions: Session[];   // ⭐ the sessions YOU pass in
     filters: {
         courses: string[];
         subject: string[];
@@ -14,22 +14,25 @@ interface SessionTabProps {
     };
 }
 
-export default function SessionTab({ filters }: SessionTabProps) {
+export default function SessionTab({ sessions, filters }: SessionTabProps) {
     const [expandedId, setExpandedId] = useState<number | null>(null);
 
-    // ✅ Destructure filters
     const { courses, subject, time, location } = filters;
 
-    // ✅ Apply combined filtering logic
+    // ⭐ Apply filters to *the passed-in session list*
     const filteredSessions = sessions.filter((session) => {
-        // Matches course names (by code or subject)
         const courseMatch =
             courses.length === 0 ||
             courses.some((c) =>
                 session.course.toUpperCase().includes(c.toUpperCase())
             );
 
-        // Matches times (checks start or end time)
+        const subjectMatch =
+            subject.length === 0 ||
+            subject.some((s) =>
+                session.subject.toUpperCase().includes(s.toUpperCase())
+            );
+
         const timeMatch =
             time.length === 0 ||
             time.some(
@@ -38,23 +41,17 @@ export default function SessionTab({ filters }: SessionTabProps) {
                     session.endTime.toUpperCase().includes(t.toUpperCase())
             );
 
-        // Matches location names
         const locationMatch =
             location.length === 0 ||
             location.some((l) =>
                 session.location.toUpperCase().includes(l.toUpperCase())
             );
-        const subjecttMatch =
-            subject.length === 0 ||
-            subject.some((l) =>
-                session.subject.toUpperCase().includes(l.toUpperCase())
-            );
-        // ✅ Combine: must satisfy ALL active filters
-        return courseMatch && timeMatch && locationMatch && subjecttMatch
+
+        return courseMatch && subjectMatch && timeMatch && locationMatch;
     });
 
     return (
-        <div className="overflow-y-auto p-4 space-y-4">
+        <div className="overflow-y-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {filteredSessions.length > 0 ? (
                 filteredSessions.map((session) => {
                     const isExpanded = expandedId === session.id;
@@ -88,24 +85,21 @@ export default function SessionTab({ filters }: SessionTabProps) {
                                     isExpanded ? "max-h-40 p-4" : "max-h-0 p-0"
                                 }`}
                             >
-                                {/* Tags */}
                                 <div className="flex flex-wrap justify-center gap-2 mb-3">
                                     {session.tags.map((tag, i) => (
                                         <span
                                             key={i}
                                             className="bg-blue-100 text-blue-700 text-sm font-semibold px-2 py-1 rounded-full"
                                         >
-                      {tag}
-                    </span>
+                                        {tag}
+                                    </span>
                                     ))}
                                 </div>
 
-                                {/* Description */}
                                 <p className="text-gray-600 text-sm text-center">
                                     {session.description}
                                 </p>
 
-                                {/* Buttons */}
                                 <div className="flex justify-center gap-4 mt-3">
                                     <button className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 shadow-sm">
                                         Favorite
@@ -123,4 +117,5 @@ export default function SessionTab({ filters }: SessionTabProps) {
             )}
         </div>
     );
+
 }
