@@ -50,7 +50,7 @@ const Home = () => {
                 <FilterSelect
                     label="Filter by Subject"
                     options={["Math", "Physics", "Chemistry", "English", "Computer Science"]}
-                    selected={filters.subject}                              // ⭐ pass value down
+                    selected={filters.subject}                             
                     onChange={(selectedSubjects) =>
                         setFilters((prev) => ({...prev, subject: selectedSubjects}))
                     }
@@ -59,7 +59,7 @@ const Home = () => {
                 <FilterSelect
                     label="Filter by Course"
                     options={["1550", "2001", "4402", "2070"]}
-                    selected={filters.courses}                              // ⭐ pass value down
+                    selected={filters.courses}                              
                     onChange={(selectedCourses) =>
                         setFilters((prev) => ({...prev, courses: selectedCourses}))
                     }
@@ -68,7 +68,7 @@ const Home = () => {
                 <FilterSelect
                     label="Filter by Day"
                     options={["Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday", "Sunday"]}
-                    selected={filters.time}                              // ⭐ pass value down
+                    selected={filters.time}                              
                     onChange={(selectedCourses) =>
                         setFilters((prev) => ({...prev, courses: selectedCourses}))
                     }
@@ -76,7 +76,7 @@ const Home = () => {
                 <FilterSelect
                     label="Filter by Location"
                     options={locations}
-                    selected={filters.time}                              // ⭐ pass value down
+                    selected={filters.time}                              
                     onChange={(selectedCourses) =>
                         setFilters((prev) => ({...prev, courses: selectedCourses}))
                     }
@@ -84,7 +84,7 @@ const Home = () => {
                 <FilterSelect
                     label="Filter by Tags"
                     options={tags}
-                    selected={filters.time}                              // ⭐ pass value down
+                    selected={filters.time}                            
                     onChange={(selectedCourses) =>
                         setFilters((prev) => ({...prev, courses: selectedCourses}))
                     }
