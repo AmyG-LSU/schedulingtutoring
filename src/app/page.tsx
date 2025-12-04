@@ -39,10 +39,13 @@ const Home = () => {
     });
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="mt-9 p-6 space-y-3">
 
             {/* Pass filters into SessionTab */}
-            <div className=" flex gap-4 mr-5 justify-end-safe">
+            <div className="font-semibold ml-6 text-4xl text-gray-800 ">
+                Tutor Offerings At {profileSessions.school}
+            </div>
+            <div className=" flex gap-4 mt-5 justify-center-safe">
 
                 <FilterSelect
                     label="Filter by Subject"
@@ -95,7 +98,7 @@ const Home = () => {
                             location: [],
                         })
                     }
-                    className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600"
+                    className="bg-amber-700 text-white px-3 py-1 rounded shadow hover:bg-amber-600"
                 >
                     Clear Filters
                 </button>

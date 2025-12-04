@@ -58,10 +58,10 @@ export default function SessionTab({ sessions, filters }: SessionTabProps) {
                     return (
                         <div
                             key={session.id}
-                            className="bg-amber-100 border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer p-6"
+                            className="bg-amber-100 border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer p-6 self-start"
                             onClick={() => setExpandedId(isExpanded ? null : session.id)}
                         >
-                            {/* Header */}
+                        {/* Header */}
                             <div className="flex justify-between items-center px-5 py-4">
                                 <div>
                                     <h3 className="font-semibold text-lg text-gray-800">

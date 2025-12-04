@@ -46,7 +46,7 @@ export default function FilterSelect({ label, options, selected, onChange }: Fil
         <div ref={dropdownRef} className="relative inline-block text-left">
             <button
                 onClick={() => setOpen(!open)}
-                className="bg-amber-500 text-white px-4 py-2 rounded shadow hover:bg-amber-600"
+                className="bg-amber-500 text-white px-3 py-1 rounded shadow hover:bg-amber-600"
             >
                 {label}
             </button>
