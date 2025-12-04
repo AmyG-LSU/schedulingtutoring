@@ -16,7 +16,7 @@ export default function Sidebar({ children }: SidebarProps) {
         return (
             <button
                 onClick={() => setExpanded(true)}
-                className="fixed top-22 left-4 z-50 p-2 rounded-lg bg-white shadow-md hover:bg-gray-200 w-15 h-16"
+                className="fixed top-22 left-4 z-50 pr-0.5 rounded-lg bg-white shadow-md hover:bg-gray-200 w-13 h-14 pl-1.5"
             >
                 <Image src="/daily-schedule-icon.png" alt="profile" width={0}height={0} sizes="100vw" className="h-3/4 w-auto object-contain"/>
             </button>
@@ -36,6 +36,8 @@ export default function Sidebar({ children }: SidebarProps) {
             </div>
 
             <div className="flex-1 overflow-y-auto p-3">{children}</div>
+
+            <div> Calender Goes HEre</div>
         </aside>
     );
 }
