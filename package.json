@@ -9,7 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+<<<<<<< Updated upstream
     "firebase-admin": "^13.5.0",
+=======
+    "framer-motion": "^12.23.25",
+    "lucide-react": "^0.555.0",
+>>>>>>> Stashed changes
     "next": "15.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0"
@@ -22,7 +27,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.3",
+<<<<<<< Updated upstream
     "lucide-react": "^0.544.0",
+=======
+>>>>>>> Stashed changes
     "tailwindcss": "^4",
     "typescript": "^5"
   }
