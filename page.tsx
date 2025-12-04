@@ -305,7 +305,7 @@ export default function ProfilePage() {
                             }}>
                                 <h3>Math 1550</h3>
                                 <p><strong>Tutor:</strong> Dillon Summers</p>
-                                <p><strong>Location:</strong> Middleton Library</p>
+                                <p><strong>Location:</strong> LSU Library</p>
                                 <p><strong>Time:</strong> Tue/Thu — 2:30 PM</p>
                                 <p><strong>Tags:</strong> calculus, freshman</p>
                             </div>
