@@ -36,6 +36,8 @@ export default function Sidebar({ children }: SidebarProps) {
             </div>
 
             <div className="flex-1 overflow-y-auto p-3">{children}</div>
+
+            <div> Calender Goes HEre</div>
         </aside>
     );
 }
