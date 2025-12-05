@@ -42,7 +42,7 @@ const Home = () => {
         <div className="mt-9 p-6 space-y-3">
 
             {/* Pass filters into SessionTab */}
-            <div className="font-semibold ml-6 text-4xl text-gray-800 ">
+            <div className="font-semibold ml-6 text-4xl text-gray-800 flex justify-center-safe">
                 Tutor Offerings At {profileSessions.school}
             </div>
             <div className=" flex gap-4 mt-5 justify-center-safe">
