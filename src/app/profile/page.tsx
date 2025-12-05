@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+
 
 export default function ProfilePage() {
 
@@ -18,90 +18,6 @@ export default function ProfilePage() {
             <style jsx global>{`
                 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-                * {
-                  box-sizing: border-box;
-                  margin: 0;
-                  padding: 0;
-                  font-family: 'Lato', sans-serif;
-                }
-
-                body {
-                  background-color: white;
-                  color: #333;
-                  text-align: center;
-                  text-decoration-color: #00aeff;
-                }
-
-                nav {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    z-index: 1000;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 20px 40px;
-                    background-color: black;
-                    height: 80px;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-
-                .personal__logo {
-                  font-size: 24px;
-                  font-weight: bold;
-                  color: #00aeff;
-                }
-
-                .nav__link--list {
-                  display: flex;
-                  gap: 24px;
-                }
-
-                .nav__link-anchor {
-                  text-decoration: none;
-                  color: white;
-                  font-weight: 500;
-                  padding: 0.5rem 1rem;
-                  transition: color 0.3s ease, background-color 0.3s ease;
-                  display: inline-block;
-                  position: relative;
-                }
-
-                .nav__link-anchor:nth-child(1)::after,
-                .nav__link-anchor:nth-child(2)::after {
-                  content: '';
-                  position: absolute;
-                  left: 0;
-                  bottom: 0;
-                  height: 2px;
-                  width: 0;
-                  background-color: #00aeff;
-                  transition: width 0.4s ease;
-                }
-
-                .nav__link-anchor:nth-child(1):hover,
-                .nav__link-anchor:nth-child(2):hover {
-                  background-color: black;
-                  color: #00aeff;
-                }
-
-                .nav__link-anchor:nth-child(1):hover::after,
-                .nav__link-anchor:nth-child(2):hover::after {
-                  width: 100%;
-                }
-
-                .nav__link-anchor-primary {
-                  color: white;
-                  padding: 8px 20px;
-                  border-radius: 50px;
-                  font-weight: 600;
-                  transition: background-color 0.3s ease;
-                }
-
-                .nav__link-anchor-primary:hover {
-                  background-color: #00aeff;
-                }
 
                 .about-me__info--container {
                   max-width: 800px;
@@ -167,26 +83,11 @@ export default function ProfilePage() {
                 }
             `}</style>
 
-            {/* NAVBAR */}
-            <nav>
-                <div className="personal__logo">Logo</div>
-                <ul className="nav__link--list">
-                    <li>
-                        <Link href="/profile" className="nav__link-anchor">
-                            Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/notifications" className="nav__link-anchor nav__link-anchor-primary">
-                            Home
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+
 
             {/* PROFILE CONTENT */}
             <div className="profile-page" style={{ paddingTop: "120px" }}>
-                <section className="about-me__info">
+                <section className="about-me__info text-center">
                     <div className="about-me__info--container">
 
                         <figure className="about-me__picture--mask">
