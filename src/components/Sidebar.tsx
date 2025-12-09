@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronFirst, ChevronLast } from "lucide-react";
 import Image from "next/image";
+import Calendar from "./calendar";
 
 interface SidebarProps {
     children?: React.ReactNode;
@@ -24,7 +25,7 @@ export default function Sidebar({ children }: SidebarProps) {
     }
 
     return (
-        <aside className="fixed top-20 left-0 h-screen w-80 bg-white border-r shadow-sm flex flex-col z-40 transition-all duration-300">
+        <aside className="fixed top-20 left-0 h-screen w-80 bg-white border-r shadow-sm flex flex-col z-40 transition-all duration-300 text-black text-base">
             <div className="p-4 pb-2 flex justify-between items-center">
                 <p></p>
                 <button
@@ -35,9 +36,12 @@ export default function Sidebar({ children }: SidebarProps) {
                 </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-3">{children}</div>
-
-            <div> Calender Goes HEre</div>
+            <div className="flex-1 overflow-y-auto p-3">
+                {children}
+                <div className="mt-4">
+                    <Calendar />
+                </div>
+            </div>
         </aside>
     );
 }
