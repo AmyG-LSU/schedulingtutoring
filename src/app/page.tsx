@@ -36,7 +36,9 @@ const Home = () => {
         subject: [],
         time: [],
         location: [],
+        tags: [],        // ⭐ ADD THIS
     });
+
 
     return (
         <div className="mt-9 p-6 space-y-3">
@@ -50,45 +52,53 @@ const Home = () => {
                 <FilterSelect
                     label="Filter by Subject"
                     options={["Math", "Physics", "Chemistry", "English", "Computer Science"]}
-                    selected={filters.subject}                             
+                    selected={filters.subject}
                     onChange={(selectedSubjects) =>
-                        setFilters((prev) => ({...prev, subject: selectedSubjects}))
+                        setFilters((prev) => ({ ...prev, subject: selectedSubjects }))
                     }
+
+
                 />
 
                 <FilterSelect
                     label="Filter by Course"
                     options={["1550", "2001", "4402", "2070"]}
-                    selected={filters.courses}                              
+                    selected={filters.courses}
                     onChange={(selectedCourses) =>
-                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                        setFilters((prev) => ({ ...prev, courses: selectedCourses }))
                     }
+
+
                 />
 
                 <FilterSelect
                     label="Filter by Day"
-                    options={["Monday", "Tuesday", "Wednesday", "Thursday","Friday", "Saturday", "Sunday"]}
+                    options={["Monday", "Tuesday", "Wednesday", "Thursday","Friday"]}
                     selected={filters.time}                              
-                    onChange={(selectedCourses) =>
-                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                    onChange={(selectedTime) =>
+                        setFilters((prev) => ({ ...prev, time: selectedTime }))
                     }
+
                 />
                 <FilterSelect
                     label="Filter by Location"
                     options={locations}
                     selected={filters.location}
-                    onChange={(selectedCourses) =>
-                        setFilters((prev) => ({...prev, courses: selectedCourses}))
+                    onChange={(selectedLocations) =>
+                        setFilters((prev) => ({ ...prev, location: selectedLocations }))
                     }
+
                 />
                 <FilterSelect
                     label="Filter by Tags"
                     options={tags}
-                    selected={filters.tag}
-                    onChange={(selectedCourses) =>
-                        setFilters((prev) => ({...prev, courses: selectedCourses}))
-                    }
-                />
+                    selected={filters.tags}
+                    onChange={(selectedTags) =>
+                    setFilters((prev) => ({ ...prev, tags: selectedTags }))
+                }
+                    />
+
+
                 <button
                     onClick={() =>
                         setFilters({
@@ -96,9 +106,10 @@ const Home = () => {
                             subject: [],
                             time: [],
                             location: [],
+                            tags: [],
                         })
                     }
-                    className="bg-amber-700 text-white px-3 py-1 rounded shadow hover:bg-amber-600"
+                    className="bg-blue-600 text-white px-3 py-1 rounded shadow hover:bg-blue-400"
                 >
                     Clear Filters
                 </button>
