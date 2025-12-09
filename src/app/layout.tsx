@@ -37,16 +37,22 @@ export default function RootLayout({
       <div className="flex">
         <Sidebar>
             <p>Current Classes</p>
-          <SidebarTable data={[
-              { Class: "IE 2000", Time: "2:00PM-3:00PM", Days: "T TH" },
-              { Class: "IE 2001", Time: "2:00PM-3:00PM", Days: "T TH" },
-          ]}/>
-            <p className="pt-5">Up Coming Tutoring Sessions</p>
+          <SidebarTable
+              data={[
+              { Class: "1550 Math", Time: "9:00AM–10:20AM", Days: "M W F" },
+              { Class: "2001 Comm.", Time: "1:30PM–2:50PM", Days: "T TH" },
+              { Class: "1253 CS", Time: "11:00AM–12:15PM", Days: "M W" },
+              { Class: "2733 Physics", Time: "3:00PM–4:20PM", Days: "T TH" },
+              { Class: "2060 Math", Time: "12:30PM–1:20PM", Days: "M W F" },
+          ]}
+              />
+
+          <p className="pt-5">Up Coming Tutoring Sessions</p>
             <SidebarTable data={[
                 {Time: "9:30am", Location: "Patrick F Taylor Hall"},
                 {Time: "10:00pm", Location: "LSU Main Library"}
             ]}/>
-            
+
         </Sidebar>
 
         {/* Main content area */}

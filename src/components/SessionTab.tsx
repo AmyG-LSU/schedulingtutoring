@@ -70,7 +70,7 @@ export default function SessionTab({ sessions, filters }: SessionTabProps) {
 
     return (
         <>
-            <div className="overflow-y-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div className="overflow-y-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredSessions.length > 0 ? (
                     filteredSessions.map((session) => {
                         const isExpanded = expandedId === session.id;
