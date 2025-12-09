@@ -12,7 +12,9 @@ interface SessionTabProps {
         subject: string[];
         time: string[];
         location: string[];
+        tags: string[];   // ⭐ ADD THIS
     };
+
 }
 
 export default function SessionTab({ sessions, filters }: SessionTabProps) {
@@ -41,24 +43,34 @@ export default function SessionTab({ sessions, filters }: SessionTabProps) {
 
         const timeMatch =
             time.length === 0 ||
-            time.some(
-                (t) =>
-                    session.startTime.toUpperCase().includes(t.toUpperCase()) ||
-                    session.endTime.toUpperCase().includes(t.toUpperCase())
+            time.some((t) =>
+                session.weekDay.toUpperCase().includes(t.toUpperCase())
             );
+
 
         const locationMatch =
             location.length === 0 ||
             location.some((l) =>
                 session.location.toUpperCase().includes(l.toUpperCase())
             );
+        const tagMatch =
+            filters.tags.length === 0 ||
+            filters.tags.some((tag) => session.tags.includes(tag));
 
-        return courseMatch && subjectMatch && timeMatch && locationMatch;
+        return (
+            courseMatch &&
+            subjectMatch &&
+            timeMatch &&
+            locationMatch &&
+            tagMatch
+        );
+
+
     });
 
     return (
         <>
-            <div className="overflow-y-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div className="overflow-y-auto p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredSessions.length > 0 ? (
                     filteredSessions.map((session) => {
                         const isExpanded = expandedId === session.id;
@@ -66,55 +78,70 @@ export default function SessionTab({ sessions, filters }: SessionTabProps) {
                         return (
                             <div
                                 key={session.id}
-                                className="bg-amber-100 border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer p-6 self-start"
+                                className="bg-blue-100 border rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer p-6 self-start"
                                 onClick={() =>
                                     setExpandedId(isExpanded ? null : session.id)
                                 }
                             >
-                                {/* Header */}
                                 <div className="flex justify-between items-center px-5 py-4">
                                     <div>
+                                        {/* SESSION NAME STAYS HERE */}
                                         <h3 className="font-semibold text-lg text-gray-800">
                                             {session.name}
                                         </h3>
+
+                                        {/* Remove tutor name from the header */}
                                         <p className="text-sm text-gray-500">
-                                            {session.tutor} · {session.weekDay}{" "}
-                                            {session.startTime} ·{" "}
-                                            {session.location}
+                                            {session.course} {session.subject} · {session.location}
                                         </p>
-                                    </div>
-                                    {isExpanded ? (
-                                        <ChevronUp className="text-gray-400" />
-                                    ) : (
-                                        <ChevronDown className="text-gray-400" />
-                                    )}
-                                </div>
+
+                                        {/* TAGS NOW IN COMPACT VIEW */}
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {session.tags.map((tag, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="bg-blue-300 text-white text-xs font-semibold px-2 py-1 rounded-full"
+                                                >
+                                            {tag}
+                                        </span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+
+                                                            {isExpanded ? (
+                                                                <ChevronUp className="text-gray-400" />
+                                                            ) : (
+                                                                <ChevronDown className="text-gray-400" />
+                                                            )}
+                                                        </div>
+
 
                                 {/* Expanded Section */}
                                 <div
                                     className={`overflow-hidden transition-all duration-300 ${
-                                        isExpanded ? "max-h-40 p-4" : "max-h-0 p-0"
+                                        isExpanded ? "max-h-[500px] p-4" : "max-h-0 p-0"
                                     }`}
                                 >
-                                    <div className="flex flex-wrap justify-center gap-2 mb-3">
-                                        {session.tags.map((tag, i) => (
-                                            <span
-                                                key={i}
-                                                className="bg-blue-100 text-blue-700 text-sm font-semibold px-2 py-1 rounded-full"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
+                                    {/* TUTOR NAME NOW MOVED HERE */}
+                                    <h3 className="font-semibold text-lg text-center text-gray-800 mb-2">
+                                        Tutor: {session.tutor}
+                                    </h3>
 
+                                    {/* TIME FIRST */}
                                     <p className="text-gray-600 text-sm text-center">
+        <span className="font-semibold">
+            Time: {session.weekDay} {session.startTime} – {session.endTime}
+        </span>
+                                        <br />
                                         {session.description}
                                     </p>
+
+
 
                                     {/* Buttons */}
                                     <div className="flex justify-center gap-4 mt-3">
                                         <button
-                                            className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 shadow-sm"
+                                            className="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-300 shadow-sm"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 setSelectedSession(session);// prevent collapsing
@@ -125,7 +152,7 @@ export default function SessionTab({ sessions, filters }: SessionTabProps) {
                                         </button>
 
                                         <button
-                                            className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 shadow-sm"
+                                            className="bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-300 shadow-sm"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 setSelectedSession(session);

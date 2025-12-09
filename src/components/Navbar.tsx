@@ -13,12 +13,9 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 ">
                 <div className="flex justify-between items-center">
                     {/* Brand */}
-                    <div className="flex flex-col leading-tight items-center py-0.5">
-                        <Link href="/" className="text-3xl font-bold text-blue-400 ">
-                            Student
-                        </Link>
+                    <div className="flex flex-col leading-tight items-start py-0.5">
                         <Link href="/" className="text-3xl font-bold text-blue-400">
-                            Tutors
+                            Student Tutors
                         </Link>
                     </div>
 
